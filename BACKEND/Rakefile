@@ -1,5 +1,6 @@
 require_relative "./config/environment"
 require "sinatra/activerecord/rake"
+require 'faker'
 
 desc "Start the server"
 task :server do  
