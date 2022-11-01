@@ -2,7 +2,9 @@ import React from 'react'
 
 const GameCard = (props) => {
   return (
+	
 	<div>
+		
       
       <h3>Title:{props.title} {props.id}</h3>
       <h5>Score::{props.score} {props.id}</h5>
