@@ -11,7 +11,7 @@ rand(1..5).times do
 reviews = Review.create(
 		score: rand(1..10),
 		comment: Faker::Lorem.sentence,
-		games_id: games.id
+		game_id: games.id
 	)
  end 
 end 
