@@ -9,8 +9,8 @@ get '/games' do
 end
 
 post '/games' do
-	games = Game.create(title:params[:title], genre:params[:genre], platform:params[:platform])
-	games.to_json
+	game = Game.create(title:params[:title], genre:params[:genre], platform:params[:platform])
+	game.to_json(include: :reviews)
 end
 
 patch '/games/:id' do
@@ -21,7 +21,7 @@ end
 	
 delete '/games/:id' do
 	games = Game.destroy(params[:id])
-	games.to_json
+	games.to_json(include: :reviews)
 end 
 		
 	
