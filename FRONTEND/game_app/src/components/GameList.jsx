@@ -4,34 +4,29 @@ import GameCard from './GameCard'
 import { useParams } from 'react-router-dom'
 
 const GameList = () => {
+  const [games, setGames] = useState([])
+  const [gameFormFlag, setGameFormFlag] = useState(false)
+  const [title, setTitle] = useState('')
+  const [platform, setPlatform] = useState('')
+  const [genre, setGenre] = useState('')
+  const [comment, setComment] = useState('')
+  const [score, setScore] = useState('')
 
-const [games, setGames] = useState([])
-const [gameFormFlag, setGameFormFlag] = useState(false)
-const [title, setTitle] = useState("")
-const [platform, setPlatform] = useState("")
-const [genre, setGenre] = useState("")
-
-const params = useParams
-
-
+  const params = useParams
 
   useEffect(() => {
     fetch('http://localhost:9292/games')
       .then((response) => response.json())
       .then((games) => {
-        setGames(games);
+        setGames(games)
       })
   }, [])
 
   const addGame = (newGame) => {
     setGames((games) => [...games, newGame])
   }
-  
-  
-  
 
   const handleSubmit = (e) => {
-    
     fetch('http://localhost:9292/games', {
       method: 'POST',
       headers: {
@@ -40,52 +35,83 @@ const params = useParams
       body: JSON.stringify({
         title: title,
         genre: genre,
-        platform: platform
+        platform: platform,
       }),
-      
     })
-    .then((response) => response.json())
-    .then((game) => {
-     addGame(game);
-       
-    })
-    .catch((err) => {
-       console.log(err.message);
-    });
-    setTitle("")
-    setPlatform("")
-    setGenre("")
-    
-   }
+      .then((response) => response.json())
+      .then((game) => {
+        addGame(game)
+      })
+      .catch((err) => {
+        console.log(err.message)
+      })
+    setTitle('')
+    setPlatform('')
+    setGenre('')
+  }
 
-  
+  //  const deleteGame = (deletedGame) => {
+  //   setGames((games) => [...games, deletedGame ])
+  // }
+
+  // const handleDelete = (e) => {
+  //   e.preventDefault()
+
+  //   fetch(`http://localhost:9292/games/${games.id}`, {
+  //     method: 'DELETE',
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //     },
+  //   })
+  //     .then((response) => response.json())
+  //     .then((data) => {
+  //       deleteGame(data);
+  //     })
+
+  //  }
+
   return (
     <div>
-      <div> 
+      <div>
         <h3>
           <form onSubmit={handleSubmit}>
             <label name="title">
               Title
-              <input type="text" id="title" name="title" onChange={(e) => setTitle(e.target.value)} />
+              <input
+                type="text"
+                id="title"
+                name="title"
+                onChange={(e) => setTitle(e.target.value)}
+              />
             </label>
             <label name="platform">
               Platform
-              <input type="text" id="platform" name="platform" onChange={(e) => setPlatform(e.target.value)} />
+              <input
+                type="text"
+                id="platform"
+                name="platform"
+                onChange={(e) => setPlatform(e.target.value)}
+              />
             </label>
             <label name="genre">
               Genre
-              <input type="text" id="genre" name="genre" onChange={(e) => setGenre(e.target.value)}/>
+              <input
+                type="text"
+                id="genre"
+                name="genre"
+                onChange={(e) => setGenre(e.target.value)}
+              />
             </label>
-            <input  type="submit" value="Add New Game" />
+            <input type="submit" value="Add New Game" />
           </form>
         </h3>
       </div>
       {games.map((games) => (
-        <GameCard 
+        <GameCard
           setTitle={setTitle}
           setGenre={setGenre}
           setPlatform={setPlatform}
-          key={games.id}  
+          key={games.id}
           games={games}
           setGames={setGames}
           title={games.title}

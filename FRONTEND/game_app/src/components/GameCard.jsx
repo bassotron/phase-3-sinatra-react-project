@@ -1,10 +1,19 @@
 import React from 'react'
 
-const GameCard = ({ key, games, setGames, title, score, platform, review, setPlatform, setGenre, setTitle}) => {
-  
-	
+const GameCard = ({
+  key,
+  games,
+  setGames,
+  title,
+  score,
+  platform,
+  review,
+  setPlatform,
+  setGenre,
+  setTitle,
+}) => {
   const deleteGame = (deletedGame) => {
-    setGames((games) => [...games, deletedGame ])
+    setGames((games) => [...games, deletedGame])
   }
 
   const handleDelete = (e) => {
@@ -18,11 +27,9 @@ const GameCard = ({ key, games, setGames, title, score, platform, review, setPla
     })
       .then((response) => response.json())
       .then((data) => {
-        deleteGame(data);
+        deleteGame(data)
       })
-    
-   }
-  
+  }
 
   return (
     <div>
@@ -38,13 +45,7 @@ const GameCard = ({ key, games, setGames, title, score, platform, review, setPla
           Review:{review} {key}
         </strong>
       </p>
-      <form>
-        <label>
-          Add Review:
-          <input type="text" />
-        </label>
-        <button>Submit Review</button>
-      </form>
+
       <button>Edit game</button>
       <button onClick={handleDelete}>Delete Game</button>
     </div>
