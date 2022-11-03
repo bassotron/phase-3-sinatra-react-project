@@ -1,53 +1,36 @@
 import React from 'react'
 
-const GameCard = ({
-  key,
-  games,
-  setGames,
-  title,
-  score,
-  platform,
-  review,
-  setPlatform,
-  setGenre,
-  setTitle,
-}) => {
-  const deleteGame = (deletedGame) => {
-    setGames((games) => [...games, deletedGame])
-  }
-
-  const handleDelete = (e) => {
-    e.preventDefault()
-
-    fetch(`http://localhost:9292/games/${games.id}`, {
+const GameCard = ({ id, game, title, score, platform, review, deleteGame }) => {
+  const handleDeleteClick = () => {
+    fetch(`http://localhost:9292/games/${game.id}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
       },
     })
       .then((response) => response.json())
-      .then((data) => {
-        deleteGame(data)
-      })
+      .then(() => deleteGame(game.id))
+	  console.log(game.id)
+	  
   }
 
   return (
     <div>
       <h3>
-        Title:{title} {key}
+        Title:{title} {id}
       </h3>
       <h5>
-        Score::{score} {key}
+        Score::{score} {id}
       </h5>
       <h5>Platform:{platform}</h5>
       <p>
         <strong>
-          Review:{review} {key}
+          Review:{review} {id}
         </strong>
       </p>
 
       <button>Edit game</button>
-      <button onClick={handleDelete}>Delete Game</button>
+      <button onClick={handleDeleteClick}>Delete Game</button>
     </div>
   )
 }
