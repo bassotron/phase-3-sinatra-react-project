@@ -1,6 +1,7 @@
 import React from 'react'
+import GameEditForm from './GameEditForm'
 
-const GameCard = ({ id, game, title, score, platform, review, deleteGame }) => {
+const GameCard = ({ id, game, title, score, platform, review, deleteGame, editGame}) => {
   const handleDeleteClick = () => {
     fetch(`http://localhost:9292/games/${game.id}`, {
       method: 'DELETE',
@@ -14,22 +15,29 @@ const GameCard = ({ id, game, title, score, platform, review, deleteGame }) => {
 	  
   }
 
+
+  
+
+
+
   return (
     <div>
+		
       <h3>
-        Title:{title} {id}
+        Title:{title} 
       </h3>
       <h5>
-        Score::{score} {id}
+        Score::{score} 
       </h5>
       <h5>Platform:{platform}</h5>
       <p>
         <strong>
-          Review:{review} {id}
+          Review:{review} 
         </strong>
       </p>
-
-      <button>Edit game</button>
+	  <h4>Edit This Game:</h4>
+      <GameEditForm id={game.id} game={game} editGame={editGame} review={review} score={score}/>
+	  <br></br>
       <button onClick={handleDeleteClick}>Delete Game</button>
     </div>
   )
