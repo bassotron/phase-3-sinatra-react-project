@@ -22,22 +22,18 @@ const GameList = () => {
   const onDeleteGame = (id) => {
     setGames((prevGames) => {
       const filteredArray = prevGames.filter((games) => games.id !== id)
+      console.log(filteredArray)
       return filteredArray
     })
   }
 
-  const editGame = (editedGame) => {
-    setGames(prevGames => {
-      const newGameArray = prevGames.map(game => {
-       if(game.id === editedGame.id){
-        return editedGame
-       } else {
-        return games
-       }
-       })
-    return newGameArray
-  })}
 
+
+  const editGame = (editedGame) => {
+    const updatedGames = games.map((game) => game.id === editedGame.id ? editedGame : game )
+    setGames(updatedGames) 
+  
+    }
   
 
   

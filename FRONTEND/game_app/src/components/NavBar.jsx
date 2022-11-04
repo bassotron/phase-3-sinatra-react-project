@@ -8,16 +8,17 @@ import {
   NavBtnLink,
 } from './NavBarElements';
 
+
 const NavBar = () => {
   return (
     <Nav>
       
 
       <NavMenu>
-      <NavLink to='/' activeStyle>
+      <NavLink to='/' >
           Home
         </NavLink>
-        <NavLink to='/games' activeStyle>
+        <NavLink to='/games' >
           Games
         </NavLink>
         </NavMenu>

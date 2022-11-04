@@ -4,6 +4,11 @@ import NavBar from './components/NavBar'
 import GameList from './components/GameList'
 
 import HomePage from './components/HomePage'
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+
+import Container from 'react-bootstrap/Container';
+import Button from 'react-bootstrap/Button';
 
 
 function App() {
@@ -13,7 +18,8 @@ function App() {
 
   return (
 
-    <div>
+   <div>
+    
     <Router>
       <NavBar />
 
@@ -24,6 +30,8 @@ function App() {
       </Routes>
     </Router>
     </div>
+   
+    
   );
 }
 

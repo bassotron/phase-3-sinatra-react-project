@@ -2,7 +2,7 @@ import React from 'react'
 import { useState } from 'react'
 
 
-const GameEditForm = ({ id, editGame }) => {
+const GameEditForm = ({ id, editGame, game }) => {
   const [title, setTitle] = useState('')
   const [platform, setPlatform] = useState('')
  
@@ -21,10 +21,9 @@ const GameEditForm = ({ id, editGame }) => {
       }),
     })
       .then((response) => response.json())
-      .then((data) => {
-        editGame(data)
-		console.log(id)
-        
+      .then((data) => { editGame(data) 
+      
+       
       })
       .catch((err) => {
         console.log(err.message)
