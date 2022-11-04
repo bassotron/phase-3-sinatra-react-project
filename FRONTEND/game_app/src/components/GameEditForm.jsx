@@ -1,12 +1,9 @@
 import React from 'react'
 import { useState } from 'react'
 
-
 const GameEditForm = ({ id, editGame, game }) => {
   const [title, setTitle] = useState('')
   const [platform, setPlatform] = useState('')
- 
- 
 
   const handleEditSubmit = (e) => {
     e.preventDefault()
@@ -21,9 +18,8 @@ const GameEditForm = ({ id, editGame, game }) => {
       }),
     })
       .then((response) => response.json())
-      .then((data) => { editGame(data) 
-      
-       
+      .then((data) => {
+        editGame(data)
       })
       .catch((err) => {
         console.log(err.message)

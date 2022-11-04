@@ -5,7 +5,6 @@ import GameForm from './GameForm'
 
 const GameList = () => {
   const [games, setGames] = useState([])
-  
 
   useEffect(() => {
     fetch('http://localhost:9292/games')
@@ -27,16 +26,12 @@ const GameList = () => {
     })
   }
 
-
-
   const editGame = (editedGame) => {
-    const updatedGames = games.map((game) => game.id === editedGame.id ? editedGame : game )
-    setGames(updatedGames) 
-  
-    }
-  
-
-  
+    const updatedGames = games.map((game) =>
+      game.id === editedGame.id ? editedGame : game,
+    )
+    setGames(updatedGames)
+  }
 
   return (
     <div>
@@ -62,10 +57,7 @@ const GameList = () => {
           review={game.reviews.map((review) => review.comment)}
           deleteGame={onDeleteGame}
           editGame={editGame}
-          
-          
         />
-        
       ))}
     </div>
   )
