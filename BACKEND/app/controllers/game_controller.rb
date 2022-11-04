@@ -15,8 +15,8 @@ end
 
 patch '/games/:id' do
 	games = Game.find(params[:id])
-	games.update(title:params[:title])
-	games.to_json
+	games.update(title:params[:title], genre:params[:genre], platform:params[:platform] )
+	games.to_json(include: :reviews)
 end
 	
 delete '/games/:id' do
