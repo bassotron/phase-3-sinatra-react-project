@@ -32,8 +32,9 @@ get '/reviews' do
 	reviews.to_json
 end
 
-post '/reviews' do
-	reviews = Review.create(score:params[:score], comment:params[:comment], games_id:params[:games_id])
+post '/reviews' do 
+	
+	reviews = Review.create(comment:params[:comment], game_id:params[:game_id])
 	reviews.to_json
 end
 		
