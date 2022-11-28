@@ -1,5 +1,6 @@
 import React from 'react'
 import GameEditForm from './GameEditForm'
+import ReviewForm from './ReviewForm'
 
 
 const GameCard = ({
@@ -11,6 +12,8 @@ const GameCard = ({
   review,
   deleteGame,
   editGame,
+  reviewID,
+  addReviewToGame
 }) => {
   const handleDeleteClick = () => {
     fetch(`http://localhost:9292/games/${game.id}`, {
@@ -39,8 +42,14 @@ const GameCard = ({
         id={game.id}
         game={game}
         editGame={editGame}
-        review={review}
+        reviews={review}
         score={score}
+      />
+      <h4>Add your own Review to this Game</h4>
+      <ReviewForm 
+      addReviewToGame={addReviewToGame}
+      id={id}
+      reviewID={reviewID}
       />
       <br></br>
       <button variant="primary" onClick={handleDeleteClick}>

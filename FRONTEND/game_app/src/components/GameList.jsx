@@ -33,6 +33,14 @@ const GameList = () => {
     setGames(updatedGames)
   }
 
+  const addReviewToGame = (newReview, id) => {
+    const findGame = games.find((game) => (game.id === id ? id : game))
+    const addedReview = games.map((game) => (game.id === id ? newReview : game))
+    setGames((games) => [...games], {
+      reviews: [findGame.review, addedReview]
+    })
+  }
+
   return (
     <div>
       <GameForm
@@ -46,7 +54,7 @@ const GameList = () => {
       <br></br>
       <br></br>
       <h1>CURRENT GAMES IN DATABASE</h1>
-      {games.map((game) => (
+      {Array.from(games).map((game) => (
         <GameCard
           key={game.id}
           id={game.id}
@@ -57,8 +65,11 @@ const GameList = () => {
           review={game.reviews.map((review) => review.comment)}
           deleteGame={onDeleteGame}
           editGame={editGame}
+          addReviewToGame={addReviewToGame}
+          reviewID={game.reviews.id}
         />
       ))}
+      )
     </div>
   )
 }
