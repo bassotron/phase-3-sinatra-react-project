@@ -2,6 +2,7 @@ import React from 'react'
 import { useState, useEffect } from 'react'
 import GameCard from './GameCard'
 import GameForm from './GameForm'
+import ReviewForm from './ReviewForm'
 
 const GameList = () => {
   const [games, setGames] = useState([])
@@ -30,15 +31,17 @@ const GameList = () => {
     const updatedGames = games.map((game) =>
       game.id === editedGame.id ? editedGame : game,
     )
-    setGames(updatedGames)
+    setGames(updatedGames)  
   }
 
   const addReviewToGame = (newReview, id) => {
+  
     const findGame = games.find((game) => (game.id === id ? id : game))
     const addedReview = games.map((game) => (game.id === id ? newReview : game))
-    setGames((games) => [...games], {
-      reviews: [findGame, addedReview]
-    })
+    setGames((games) => games.map(game => game.id == id ? {...game, 
+      reviews: [...game.reviews, newReview]
+    }: game)
+)
   }
 
   return (
@@ -67,6 +70,7 @@ const GameList = () => {
           editGame={editGame}
           addReviewToGame={addReviewToGame}
           reviewID={game.reviews.id}
+          
         />
       ))}
       )
