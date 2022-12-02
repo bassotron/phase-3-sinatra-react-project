@@ -37,7 +37,7 @@ const GameList = () => {
     const findGame = games.find((game) => (game.id === id ? id : game))
     const addedReview = games.map((game) => (game.id === id ? newReview : game))
     setGames((games) => [...games], {
-      reviews: [findGame.review, addedReview]
+      reviews: [findGame, addedReview]
     })
   }
 
